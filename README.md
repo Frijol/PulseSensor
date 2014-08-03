@@ -15,6 +15,7 @@ Connect the PulseSensor to Tessel as follows:
 
 Connect the PulseSensor to your finger:
 Put the heart side of the PulseSensor to your fingertip, then wrap it securely with the provided velcro strip. You should feel your pulse in your fingertip.
+It would be a good idea to also peruse [this pdf](file:///Users/timryan/Downloads/PulseSensorAmpedGettingStartedGuide.pdf) from the manufacturers, which shows you how to seal and attach the sensor.
 
 ##Installation
 
