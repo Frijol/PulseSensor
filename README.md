@@ -58,7 +58,7 @@ Emitted on error connecting
 Emitted when the pulse object is created and there are enough samples to determine BPM
 
 &#x20;<a href="#api-pulse-on-beat-callback-time" name="api-pulse-on-beat-callback-time">#</a> pulse<b>.on</b>( 'beat', callback(time) )  
-Emitted at each heartbeat sensed.
+Emitted at each heartbeat sensed. Beat emission begins before ready event is emitted.
 
 ##Properties
 
