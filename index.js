@@ -27,7 +27,7 @@ function PulseSensor (hardware, callback) {
   self.ready = false;
   self.hardware = hardware; // Hardware should be a specific pin for PulseSensor
   self.pollRate = 10; // Interval to read sensor
-  self.arraySize = 3; // Calculates BPM based on an array of this size
+  self.arraySize = 3; // // BPM is calculated based on the average of an array of time differences. Increasing the array size smooths the data.
   self.array = [];
   self.BPM = 0; // Starts at 0, samples
   
@@ -53,7 +53,7 @@ function PulseSensor (hardware, callback) {
   self.on('beat', function (time) {
     var diff = time - oldTime
     // Check that the data is reasonable
-    if (diff > 10) {
+    if (diff > 40 && diff < 5000) {
       self.array.push(time - oldTime);
     }
     oldTime = time;
@@ -91,19 +91,6 @@ PulseSensor.prototype.readRaw = function (callback) {
     callback(this.hardware.read());
   }
   return this.hardware.read();
-};
-
-// Gets BPM
-PulseSensor.prototype.read = function (arraySize, callback) {
-  
-};
-
-PulseSensor.prototype.setPollRate = function (rate, callback) {
-  
-};
-
-PulseSensor.prototype.setArraySize = function (size, callback) {
-  
 };
 
 // Standard Tessel use function

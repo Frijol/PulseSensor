@@ -1,5 +1,5 @@
 {
-  "name": "PulseSensor",
+  "name": "pulsesensor",
   "version": "0.0.0",
   "description": "PulseSensor in Node for Tessel",
   "main": "index.js",
