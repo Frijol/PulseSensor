@@ -24,18 +24,59 @@ function PulseSensor (hardware, callback) {
   }
   
   // Set properties
+  self.ready = false;
   self.hardware = hardware; // Hardware should be a specific pin for PulseSensor
-  self.arraySize = 5; // Calculates BPM based on an array of this size
+  self.pollRate = 10; // Interval to read sensor
+  self.arraySize = 3; // Calculates BPM based on an array of this size
+  self.array = [];
   self.BPM = 0; // Starts at 0, samples
   
-  // Begin listening for events
-  // pulse.on('beat') // fires on heartbeat
+  console.log('Collecting samples...');
   
-  // Emit the ready event
-  setImmediate(function emitReady() {
-    self.emit('ready', self);
-    if(callback) {
-      callback(null, self);
+  // Emit a time at each beat
+  var high = false;
+  setInterval(function () {
+    if(self.readRaw() == 1) {
+      if(!high) {
+        high = true;
+        var time = new Date(milliseconds);
+        // TODO: add filtering
+        self.emit('beat', time);
+      }
+    } else {
+      high = false;
+    }
+  }, pollRate);
+  
+  // Collect for BPM
+  var oldTime = new Date(milliseconds);
+  self.on('beat', function (time) {
+    var diff = time - oldTime
+    // Check that the data is reasonable
+    if (diff > 10) {
+      self.array.push(time - oldTime);
+    }
+    oldTime = time;
+    if(self.array.length > self.arraySize) {
+      self.array.shift();
+      var sum = 0;
+      for (var i = 0; i < self.array.length; i++) {
+        sum += self.array[i];
+      }
+      var avg = sum/self.array.length;
+      self.BPM = 60000/avg;
+      if (!self.ready) {
+        if (self.BPM > 0) {
+          self.ready = true;
+          // Emit the ready event
+          setImmediate(function emitReady() {
+            self.emit('ready', self);
+            if(callback) {
+              callback(null, self);
+            }
+          });
+        }
+      }
     }
   });
 }
@@ -57,8 +98,11 @@ PulseSensor.prototype.read = function (arraySize, callback) {
   
 };
 
-// Blinks specified LED in time with heartbeat
-PulseSensor.prototype.blink = function (led, callback) {
+PulseSensor.prototype.setPollRate = function (rate, callback) {
+  
+};
+
+PulseSensor.prototype.setArraySize = function (size, callback) {
   
 };
 
