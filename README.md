@@ -18,9 +18,15 @@ The [PulseSensor](pulsesensor.com) is an open source pulse sensor. It shines gre
 1. Red wire to 5V (Vin on the GPIO port)
 1. Purple wire (signal) to one of the Analog pins on the GPIO port. I use A1.
 
+![](https://lh6.googleusercontent.com/-dE9dcdPjQG8/U-KQ8p_Zt3I/AAAAAAAAJmc/XvKroY3qrqQ/w882-h496-no/20140806_133241.jpg)
+
 *Connect the PulseSensor to your finger:*
 
 Put the heart side of the PulseSensor to your fingertip, then wrap it securely with the provided velcro strip. You should feel your pulse in your fingertip.
+
+![](https://lh3.googleusercontent.com/-jP0E-dwgJWY/U-KRCCv84BI/AAAAAAAAJmY/V1JLqai4Gp4/w882-h496-no/20140806_133300.jpg)
+
+![](https://lh4.googleusercontent.com/-lWNlkrCA8uk/U-KRg6CqiWI/AAAAAAAAJm4/JvdyY_J5V54/w882-h496-no/20140806_133454.jpg)
 
 It would be a good idea to also peruse [this pdf](http://pulse-sensor.googlecode.com/files/PulseSensorAmpedGettingStartedGuide.pdf) from the manufacturers, which shows you how to seal and attach the sensor.
 
