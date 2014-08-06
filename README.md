@@ -5,7 +5,12 @@ Node library for the PulseSensor, designed to interact with [Tessel](tessel.io).
 
 The [PulseSensor](pulsesensor.com) is an open source pulse sensor. It shines green light through your skin, then reads the intensity of light back. This light intensity changes based on the action in your capillaries, so the analog value read back correlates with your pulse.
 
-You can buy it on [Adafruit](http://www.adafruit.com/products/1093?&main_page=product_info&products_id=1093).
+##Materials
+
+* [PulseSensor](http://www.adafruit.com/products/1093?&main_page=product_info&products_id=1093)
+* [Tessel](tessel.io)
+
+##Connection
 
 Connect the PulseSensor to Tessel as follows:
 
