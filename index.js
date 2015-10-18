@@ -6,23 +6,6 @@ var EventEmitter = require('events').EventEmitter;
 function PulseSensor (hardware, callback) {
   var self = this;
 
-  // Check to ensure proper hardware has been passed in
-  if (typeof hardware.pin != 'number') {
-    // Pin not specified
-    var error = new Error("Specify a pin, e.g. tessel.port['GPIO'].pin['A1']");
-    self.emit('error', error);
-    if(callback) {
-      callback(error);
-    }
-  } else if ([28, 29, 30, 31, 32, 33].indexOf(hardware.pin) < 0) {
-    // Not an analog pin
-    var error = new Error('Specified pin is not an analog pin: ' + hardware.pin);
-    self.emit('error', error);
-    if(callback) {
-      callback(error);
-    }
-  }
-  
   // Set properties
   self.ready = false;
   self.hardware = hardware; // Hardware should be a specific pin for PulseSensor
@@ -30,9 +13,9 @@ function PulseSensor (hardware, callback) {
   self.arraySize = 3; // // BPM is calculated based on the average of an array of time differences. Increasing the array size smooths the data.
   self.array = [];
   self.BPM = 0; // Starts at 0, samples
-  
+
   console.log('Collecting samples...');
-  
+
   // Emit a time at each beat
   var high = false;
   setInterval(function () {
@@ -47,7 +30,7 @@ function PulseSensor (hardware, callback) {
       high = false;
     }
   }, pollRate);
-  
+
   // Collect for BPM
   var oldTime = new Date(milliseconds);
   self.on('beat', function (time) {
